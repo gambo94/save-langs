@@ -1,0 +1,31 @@
+{
+  "name": "save-langs",
+  "version": "1.0.0",
+  "description": "Fastify API for a dialect-based dictionary app",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^22.14.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.2",
+    "fastify-cors": "^6.1.0",
+    "fastify-env": "^2.2.0",
+    "fastify-jwt": "^4.2.0",
+    "fastify-multipart": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
+    "mongoose": "^8.13.2",
+    "nanoid": "^5.1.5"
+  }
+}
