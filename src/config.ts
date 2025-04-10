@@ -15,12 +15,6 @@ export const config = {
     secret: 'your_jwt_secret_here',
     expiresIn: '1h',
   },
-  mongodb: {
-    uri: 'mongodb://localhost:27017/fanes',
-  },
-  app: {
-    name: 'Fanés Dictionary API',
-    port: 3000,
-    env: 'development',
-  },
+  supportedLangs: ['fanés'],
+  roleList: ['admin', 'user', 'moderator'],
 } as const;

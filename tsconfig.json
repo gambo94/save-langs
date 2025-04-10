@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "rootDir": "src",
-    "outDir": "dist",
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "strict": true,
-    "esModuleInterop": true
-  }
+    "outDir": "dist",
+    "rootDir": "src",
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],  // This will include all TypeScript files in the `src` folder
+  "exclude": ["node_modules", "dist"]  // Exclude node_modules and dist from the TypeScript compilation
 }

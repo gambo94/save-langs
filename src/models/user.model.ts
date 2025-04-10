@@ -12,9 +12,12 @@ export interface IUser extends Document {
   email: string;
   givenName: string;
   familyName: string;
+  roles: Array<'admin' | 'user' | 'moderator'>;
+  langs: Array<'fanés'>;
+  lastSessionAt: Date;
 }
 
-// 2. Define the schema
+// Define the schema
 const UserSchema = new Schema<IUser>(
   {
     _id: {
@@ -26,6 +29,9 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     givenName: { type: String, required: true },
     familyName: { type: String, required: true },
+    langs: { type: [String], enum: config.supportedLangs, required: true },
+    roles: { type: [String], enum: config.roleList, required: true },
+    lastSessionAt: { type: Date },
   },
   {
     collection: 'users',
@@ -37,7 +43,7 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-// 3. Hide internal fields in JSON
+// Hide internal fields in JSON
 UserSchema.set('toJSON', {
   versionKey: false,
   virtuals: true,
@@ -48,33 +54,3 @@ UserSchema.set('toJSON', {
 });
 
 export const UserModel = model<IUser>('User', UserSchema);
-
-// const UserSchema = new Schema(
-//   {
-//     username: { type: String, required: true, unique: true },
-//     password: { type: String, required: true },
-//     email: { type: String, required: true, unique: true },
-//     givenName: { type: String, required: true },
-//     familyName: { type: String, required: true },
-//   },
-//   {
-//     collection: 'users',
-//     timestamps: true,
-//     // User info is important -- specify write concern of 'majority'.
-//     writeConcern: { w: 'majority', j: true, wtimeout: 5000 },
-//     versionKey: false,
-//     id: false, // No additional id as virtual getter.
-//     toJSON: { versionKey: false, virtuals: true },
-//     toObject: { versionKey: false },
-//   }
-// )
-
-// if (!UserSchema.options.toJSON) {
-//   UserSchema.options.toJSON = {}
-// }
-
-// UserSchema.options.toJSON.transform = function (doc, ret) {
-//   delete ret.__v
-// }
-
-// module.exports = mongoose.model('users', UserSchema)
